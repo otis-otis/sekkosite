@@ -149,6 +149,7 @@
   const SPACING = 110;
   const HOLD = 140;     // idle time before the trail starts clearing
   const STAGGER = 200;  // gap between each image fading out
+  const LAST_HOLD = 1000; // the newest image lingers this much longer
 
   const srcs = Object.entries(folders).flatMap(([folder, names]) =>
     names.map((name) => `${folder}/${name}.webp`)
@@ -191,13 +192,16 @@
   // After the pointer goes idle, fade the trail one image at a time,
   // first-to-last (oldest first), with a fixed gap so it's uniform regardless of speed.
   const runFadeOut = () => {
-    live.slice().forEach((img, i) => {
+    const seq = live.slice();
+    const lastIdx = seq.length - 1;
+    seq.forEach((img, i) => {
       clearTimeout(img._timer);
+      const delay = i * STAGGER + (i === lastIdx ? LAST_HOLD : 0);
       img._timer = setTimeout(() => {
         hide(img);
         const j = live.indexOf(img);
         if (j > -1) live.splice(j, 1);
-      }, i * STAGGER);
+      }, delay);
     });
   };
 
