@@ -89,6 +89,12 @@ img {
   transform: translate(4vw, 2vh) scaleY(0.9);
 }
 
+/* On mobile the logo floats over the whole page instead of just the hero. */
+.logo.roaming {
+  position: fixed;
+  z-index: 100;
+}
+
 .nav {
   position: absolute;
   top: clamp(24px, 7vh, 64px);

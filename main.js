@@ -18,6 +18,7 @@
 
   const hero = document.querySelector(".hero");
   const logo = document.querySelector(".logo");
+  const roamMQ = window.matchMedia("(max-width: 760px)");
 
   const bounce = () => {
     const speed = 42; // px per second
@@ -33,8 +34,13 @@
     let running = true;
 
     const measure = () => {
-      maxX = Math.max(0, hero.clientWidth - logo.offsetWidth);
-      maxY = Math.max(0, hero.clientHeight - logo.offsetHeight);
+      // On mobile the logo roams the whole viewport (fixed); on desktop it stays in the hero.
+      const roam = roamMQ.matches;
+      logo.classList.toggle("roaming", roam);
+      const boundsW = roam ? window.innerWidth : hero.clientWidth;
+      const boundsH = roam ? window.innerHeight : hero.clientHeight;
+      maxX = Math.max(0, boundsW - logo.offsetWidth);
+      maxY = Math.max(0, boundsH - logo.offsetHeight);
       const shortest = Math.min(maxX, maxY);
       gap = Math.min(Math.max(40, shortest * 0.18), shortest * 0.35);
       x = Math.min(Math.max(x, 0), maxX);
@@ -107,10 +113,12 @@
     steer();
 
     window.addEventListener("resize", measure);
+    roamMQ.addEventListener("change", measure);
     logo.complete ? measure() : logo.addEventListener("load", measure);
 
+    // Pause off-screen only on desktop; on mobile it roams the whole page, so keep going.
     new IntersectionObserver(([entry]) => {
-      running = entry.isIntersecting;
+      running = roamMQ.matches || entry.isIntersecting;
       last = performance.now();
     }).observe(hero);
 
