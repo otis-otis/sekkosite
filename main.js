@@ -151,9 +151,13 @@
   const STAGGER = 200;  // gap between each image fading out
   const LAST_HOLD = 1000; // the newest image lingers this much longer
 
-  const srcs = Object.entries(folders).flatMap(([folder, names]) =>
-    names.map((name) => `${folder}/${name}.webp`)
-  );
+  const idOf = (src) => src.slice(src.lastIndexOf("/") + 1);
+
+  // Frankfurt and Hannover share many identical photos, so keep one of each.
+  const seen = new Set();
+  const srcs = Object.entries(folders)
+    .flatMap(([folder, names]) => names.map((name) => `${folder}/${name}.webp`))
+    .filter((src) => (seen.has(idOf(src)) ? false : seen.add(idOf(src))));
 
   const preload = (list) => list.forEach((src) => { new Image().src = src; });
 
@@ -172,6 +176,19 @@
 
   const order = srcs.slice().sort(() => Math.random() - 0.5);
   let next = 0;
+  let lastId = null;
+
+  // Draw the next photo, reshuffling each pass and never repeating the previous one.
+  const nextSrc = () => {
+    if (next >= order.length) {
+      next = 0;
+      order.sort(() => Math.random() - 0.5);
+      if (order.length > 1 && idOf(order[0]) === lastId) order.push(order.shift());
+    }
+    const src = order[next++];
+    lastId = idOf(src);
+    return src;
+  };
   let slot = 0;
   let z = 1;
   let lastX = null;
@@ -222,8 +239,7 @@
       img.style.zIndex = z++;
       img.classList.add("is-on");
     };
-    img.src = order[next];
-    next = (next + 1) % order.length;
+    img.src = nextSrc();
     if (img.complete) img.onload();
 
     const i = live.indexOf(img);
