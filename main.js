@@ -189,9 +189,9 @@
   };
 
   // After the pointer goes idle, fade the trail one image at a time,
-  // last-to-first, with a fixed gap so it's uniform regardless of speed.
+  // first-to-last (oldest first), with a fixed gap so it's uniform regardless of speed.
   const runFadeOut = () => {
-    live.slice().reverse().forEach((img, i) => {
+    live.slice().forEach((img, i) => {
       clearTimeout(img._timer);
       img._timer = setTimeout(() => {
         hide(img);
