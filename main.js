@@ -147,7 +147,8 @@
 
   const VISIBLE = 3;
   const SPACING = 110;
-  const LIFETIME = 1100;
+  const HOLD = 140;     // idle time before the trail starts clearing
+  const STAGGER = 200;  // gap between each image fading out
 
   const srcs = Object.entries(folders).flatMap(([folder, names]) =>
     names.map((name) => `${folder}/${name}.webp`)
@@ -174,6 +175,7 @@
   let z = 1;
   let lastX = null;
   let lastY = null;
+  let idleTimer = null;
   const live = [];
 
   const hide = (img) => {
@@ -181,7 +183,26 @@
     clearTimeout(img._timer);
   };
 
+  const cancelPending = () => {
+    clearTimeout(idleTimer);
+    live.forEach((img) => clearTimeout(img._timer));
+  };
+
+  // After the pointer goes idle, fade the trail one image at a time,
+  // last-to-first, with a fixed gap so it's uniform regardless of speed.
+  const runFadeOut = () => {
+    live.slice().reverse().forEach((img, i) => {
+      clearTimeout(img._timer);
+      img._timer = setTimeout(() => {
+        hide(img);
+        const j = live.indexOf(img);
+        if (j > -1) live.splice(j, 1);
+      }, i * STAGGER);
+    });
+  };
+
   const clear = () => {
+    cancelPending();
     live.splice(0).forEach(hide);
     lastX = lastY = null;
   };
@@ -206,12 +227,9 @@
     live.push(img);
     while (live.length > VISIBLE) hide(live.shift());
 
-    clearTimeout(img._timer);
-    img._timer = setTimeout(() => {
-      hide(img);
-      const j = live.indexOf(img);
-      if (j > -1) live.splice(j, 1);
-    }, LIFETIME);
+    // Still moving: cancel any queued fades and restart the idle countdown.
+    cancelPending();
+    idleTimer = setTimeout(runFadeOut, HOLD);
   };
 
   zone.addEventListener("pointermove", (e) => {
