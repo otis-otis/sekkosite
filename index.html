@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sekko</title>
+  <meta name="description" content="Sekko — new music out now. Tour dates, releases and links.">
+  <meta property="og:title" content="Sekko">
+  <meta property="og:image" content="albumart.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+  <link rel="preload" href="seklogo.png" as="image">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="hero" id="top">
+    <img class="logo" src="seklogo.png" alt="Sekko" width="2286" height="930">
+
+    <nav class="nav">
+      <a href="#">shop</a>
+      <a href="#releases">music</a>
+      <a href="#">videos</a>
+    </nav>
+
+    <figure class="release">
+      <img src="albumart.jpeg" alt="Sekko — album artwork" width="1185" height="1185">
+      <figcaption><span>out now</span></figcaption>
+    </figure>
+  </header>
+
+  <main>
+    <section class="panel dates" id="dates" data-trail="Frankfurt">
+      <h2 class="title">dates</h2>
+      <ol class="list">
+        <li><time datetime="2026-06-04">6.4.26</time><span>London</span><span>Venue MOT</span></li>
+        <li><time datetime="2026-09-05">9.5.26</time><span>Hannover</span><span>Mothfest</span></li>
+        <li><time datetime="2026-09-06">9.6.26</time><span>Frankfurt</span><span>Mothfest</span></li>
+        <li><time datetime="2026-10-02">10.2.26</time><span>Brooklyn</span><span>Market Hotel</span></li>
+        <li><time datetime="2026-10-17">10.17.26</time><span>Miami</span><span>III Points Festival</span></li>
+        <li><time datetime="2026-11-05">11.5.26</time><span>London</span><span>Fabric</span></li>
+        <li><time datetime="2026-11-14">11.14.26</time><span>Los Angeles</span><span>Lights Down Low</span></li>
+      </ol>
+    </section>
+
+    <section class="panel releases" id="releases" data-trail="Hannover">
+      <h2 class="title">releases</h2>
+      <ol class="list">
+        <li><span>2026</span><span>Girl</span></li>
+        <li><span>2025</span><span>Bounds</span></li>
+        <li><span>2025</span><span>I Wanna Rock</span></li>
+        <li class="gap"><span>2026</span><span>When I Say You Say</span></li>
+        <li><span>2026</span><span>French</span></li>
+        <li><span>2026</span><span>Hey</span></li>
+        <li><span>2026</span><span>Bow</span></li>
+        <li><span>2026</span><span>Hyper</span></li>
+        <li><span>2026</span><span>Don't Care</span></li>
+        <li><span>2026</span><span>Mdr</span></li>
+        <li><span>2025</span><span>Flock</span></li>
+        <li><span>2025</span><span>Chop</span></li>
+        <li><span>2025</span><span>W</span></li>
+        <li class="gap"><span>2026</span><span>"me or the road"</span></li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <h2>Links</h2>
+    <ul>
+      <li><a href="#">Spotify</a></li>
+      <li><a href="#">Apple Music</a></li>
+      <li><a href="#">SoundCloud</a></li>
+      <li><a href="#">Discord</a></li>
+      <li><a href="#">YouTube</a></li>
+      <li><a href="#">Instagram</a></li>
+      <li><a href="#">Merch</a></li>
+    </ul>
+  </footer>
+
+  <script src="main.js"></script>
+
+  <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+    <filter id="pixelate" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+      <feFlood x="0" y="0" width="1" height="1"/>
+      <feComposite width="2" height="2"/>
+      <feTile result="a"/>
+      <feComposite in="SourceGraphic" in2="a" operator="in"/>
+      <feMorphology operator="dilate" radius="1"/>
+    </filter>
+  </svg>
+</body>
+</html>
