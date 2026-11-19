@@ -40,13 +40,14 @@ img {
 
 .nav {
   position: fixed;
-  top: 22px;
-  left: 24px;
+  top: 28px;
+  left: 50%;
   z-index: 10;
   display: flex;
-  gap: 1.1em;
-  font-size: 15px;
+  gap: 1.4em;
+  font-size: 22px;
   letter-spacing: 0.02em;
+  transform: translateX(-50%);
 }
 
 body[data-tab="home"] .nav {
@@ -171,8 +172,8 @@ body[data-tab="home"] .nav {
 
 @media (max-width: 640px) {
   .nav {
-    left: 16px;
-    top: 16px;
+    top: 20px;
+    font-size: 20px;
   }
 
   .product {
