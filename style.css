@@ -30,13 +30,20 @@ body {
 }
 
 body[data-tab="home"] {
+  overflow: hidden;
   background: #cbb9a4 url("home.webp") 85% 50% / cover no-repeat;
 }
 
 body[data-tab="home"]::before {
   content: "";
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  height: 100dvh;
+  height: 100lvh;
+  min-height: -webkit-fill-available;
   z-index: 0;
   background: #cbb9a4 url("home.webp") 85% 50% / cover no-repeat;
   pointer-events: none;
