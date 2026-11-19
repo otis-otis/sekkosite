@@ -113,6 +113,7 @@ body[data-tab="home"] .nav {
   position: relative;
   width: min(680px, 68vw);
   aspect-ratio: 774 / 341;
+  transform: translateX(-6%);
 }
 
 .pack-case {
