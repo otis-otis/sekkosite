@@ -10,13 +10,36 @@
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+  height: -webkit-fill-available;
+}
+
 html, body {
   margin: 0;
-  height: 100%;
   background: #000;
   color: #fff;
   font-family: var(--sans);
   -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100%;
+  min-height: 100dvh;
+  min-height: -webkit-fill-available;
+}
+
+body[data-tab="home"] {
+  background: #cbb9a4 url("home.webp") 85% 50% / cover no-repeat;
+}
+
+body[data-tab="home"]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: #cbb9a4 url("home.webp") 85% 50% / cover no-repeat;
+  pointer-events: none;
 }
 
 a {
@@ -40,7 +63,7 @@ img {
 
 .nav {
   position: fixed;
-  top: 28px;
+  top: calc(28px + env(safe-area-inset-top, 0px));
   left: 50%;
   z-index: 10;
   display: flex;
@@ -68,6 +91,8 @@ body[data-tab="home"] .nav {
 .page {
   display: none;
   min-height: 100svh;
+  min-height: 100dvh;
+  min-height: -webkit-fill-available;
 }
 
 .page.is-on {
@@ -75,12 +100,14 @@ body[data-tab="home"] .nav {
 }
 
 .home {
-  background: #cbb9a4 url("home.webp") 85% 50% / cover no-repeat;
+  background: transparent;
 }
 
 .shop {
   display: none;
   min-height: 100svh;
+  min-height: 100dvh;
+  min-height: -webkit-fill-available;
   background: #000;
 }
 
@@ -189,7 +216,7 @@ body[data-tab="home"] .nav {
 
 @media (max-width: 640px) {
   .nav {
-    top: 20px;
+    top: calc(20px + env(safe-area-inset-top, 0px));
     font-size: 20px;
   }
 
