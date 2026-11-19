@@ -113,7 +113,8 @@ body[data-tab="home"] .nav {
   position: relative;
   width: min(680px, 68vw);
   aspect-ratio: 774 / 341;
-  transform: translateX(-6%);
+  /* Gap between jewel case and insert sits on the page center. */
+  transform: translateX(-3.42%);
 }
 
 .pack-case {
