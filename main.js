@@ -20,4 +20,19 @@
 
   window.addEventListener("hashchange", fromHash);
   fromHash();
+
+  const pack = document.querySelector(".pack");
+  const fineHover = window.matchMedia("(hover: hover) and (pointer: fine)");
+  if (pack) {
+    pack.addEventListener("click", () => {
+      if (fineHover.matches) return;
+      pack.classList.toggle("is-open");
+    });
+    pack.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        pack.classList.toggle("is-open");
+      }
+    });
+  }
 })();

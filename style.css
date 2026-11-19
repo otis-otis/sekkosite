@@ -95,8 +95,50 @@ body[data-tab="home"] .nav {
   text-align: center;
 }
 
-.product img {
+.pack {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1024 / 387;
   margin: 0 auto 2.4rem;
+  overflow: hidden;
+  cursor: pointer;
+  outline: none;
+}
+
+.pack-case {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+}
+
+.pack-disc {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 52%;
+  height: 100%;
+  width: auto;
+  max-width: none;
+  transform: translate(8%, -50%);
+  filter: drop-shadow(4px 6px 16px rgba(0, 0, 0, 0.45));
+  transition: transform 0.75s cubic-bezier(0.22, 1, 0.32, 1);
+  pointer-events: none;
+  user-select: none;
+}
+
+.pack:hover .pack-disc,
+.pack:focus-visible .pack-disc,
+.pack.is-open .pack-disc {
+  transform: translate(40%, -50%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pack-disc {
+    transition: none;
+    transform: translate(38%, -50%);
+  }
 }
 
 .product h1 {

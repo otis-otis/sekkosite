@@ -12,7 +12,7 @@
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
   <link rel="preload" href="home.webp" as="image">
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=7">
 </head>
 <body data-tab="home">
 
@@ -27,7 +27,10 @@
 
   <section class="page shop" id="shop">
     <article class="product">
-      <img src="cd.webp" alt="sektape CD — jewel case, insert and disc" width="1024" height="387">
+      <div class="pack" tabindex="0" aria-label="sektape CD. Hover or tap to slide the disc out.">
+        <img class="pack-disc" src="disc.webp" alt="" width="456" height="580">
+        <img class="pack-case" src="case.webp" alt="sektape jewel case and insert" width="1024" height="387">
+      </div>
       <h1>sektape</h1>
       <p>physical CD</p>
       <!-- Replace href with a Stripe Payment Link once the artist account is live. -->
