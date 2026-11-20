@@ -78,6 +78,7 @@ img {
   font-size: 22px;
   letter-spacing: 0.02em;
   transform: translateX(-50%);
+  color: #111;
 }
 
 body[data-tab="home"] .nav {
@@ -110,12 +111,17 @@ body[data-tab="home"] .nav {
   background: transparent;
 }
 
+body[data-tab="shop"] {
+  background: #ccdeec;
+  color: #111;
+}
+
 .shop {
   display: none;
   min-height: 100svh;
   min-height: 100dvh;
   min-height: -webkit-fill-available;
-  background: #000;
+  background: #ccdeec;
 }
 
 .shop.is-on {
@@ -136,61 +142,16 @@ body[data-tab="home"] .nav {
 .pack {
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: clamp(16px, 2.4vw, 36px);
   width: 100%;
   margin: 0 0 2.4rem;
-  overflow: visible;
-  cursor: pointer;
-  outline: none;
 }
 
-.pack-stage {
-  position: relative;
-  width: min(680px, 68vw);
-  aspect-ratio: 774 / 341;
-  /* Gap between jewel case and insert sits on the page center. */
-  transform: translateX(-3.42%);
-}
-
-.pack-case {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  height: auto;
-  pointer-events: none;
-}
-
-.pack-disc {
-  position: absolute;
-  z-index: 1;
-  top: 49%;
-  left: 91.4%;
-  height: 100%;
+.pack img {
+  height: min(360px, 38vw);
   width: auto;
-  max-width: none;
-  transform: translate(-36%, -50%);
-  filter: drop-shadow(4px 6px 16px rgba(0, 0, 0, 0.45));
-  transition: transform 0.75s cubic-bezier(0.22, 1, 0.32, 1);
-  pointer-events: none;
-  user-select: none;
-}
-
-.pack:hover .pack-disc {
-  transform: translate(0, -50%);
-}
-
-.pack:focus-visible .pack-disc {
-  transform: translate(0, -50%);
-}
-
-.pack.is-open .pack-disc {
-  transform: translate(0, -50%);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .pack-disc {
-    transition: none;
-    transform: translate(0, -50%);
-  }
+  max-width: 46vw;
 }
 
 .product h1 {
@@ -231,7 +192,13 @@ body[data-tab="home"] .nav {
     padding-top: 4.5rem;
   }
 
-  .pack-stage {
-    width: min(680px, 78vw);
+  .pack {
+    gap: 12px;
+  }
+
+  .pack img {
+    height: auto;
+    width: min(170px, 44vw);
+    max-width: 44vw;
   }
 }
