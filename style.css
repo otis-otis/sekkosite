@@ -182,6 +182,7 @@ body[data-tab="shop"] {
   transform: translateX(-50%);
   padding-top: 1.8rem;
   white-space: nowrap;
+  z-index: 2;
 }
 
 .product h1 {
