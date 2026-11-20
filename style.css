@@ -31,22 +31,7 @@ body {
 
 body[data-tab="home"] {
   overflow: hidden;
-  background: #cbb9a4 url("home.webp") 85% 50% / cover no-repeat;
-}
-
-body[data-tab="home"]::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100%;
-  height: 100dvh;
-  height: 100lvh;
-  min-height: -webkit-fill-available;
-  z-index: 0;
-  background: #cbb9a4 url("home.webp") 85% 50% / cover no-repeat;
-  pointer-events: none;
+  background: #cbb9a4;
 }
 
 a {
@@ -108,7 +93,41 @@ body[data-tab="home"] .nav {
 }
 
 .home {
-  background: transparent;
+  position: relative;
+  overflow: hidden;
+  background: #cbb9a4;
+}
+
+.home.is-on {
+  min-height: 100svh;
+  min-height: 100dvh;
+  min-height: 100lvh;
+}
+
+.home-pan {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  touch-action: none;
+  cursor: grab;
+  z-index: 0;
+}
+
+.home-pan.is-dragging {
+  cursor: grabbing;
+}
+
+.home-pan img {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  max-width: none;
+  width: auto;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  will-change: transform;
 }
 
 body[data-tab="shop"] {
